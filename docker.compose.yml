@@ -3,13 +3,13 @@ volumes:
 
 services:
   postgres:
-    container_name: sport-app
+    container_name: pick_container_name
     labels:
       org.springframework.boot.service-connection: postgres
     image: "postgres:17"
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "Qwerty007"
+      POSTGRES_USER: "pick_user_name"
+      POSTGRES_PASSWORD: "pick_the_pass"
       PGDATA: "/data/postgres"
     volumes:
       - postgres:/data/postgres
