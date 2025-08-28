@@ -1,4 +1,3 @@
-Here’s a simple **Docker Compose** file to run MongoDB with persistence and an admin UI:
 
 ```yaml
 version: "3.9"
@@ -47,8 +46,5 @@ volumes:
 
 * **volumes**
 
-  * Stores MongoDB data outside the container so it won’t be lost when the container restarts
 
----
 
-Do you want me to make this minimal (just MongoDB, no UI) or keep the `mongo-express` admin dashboard included?
