@@ -1,50 +1,29 @@
 
 ```yaml
-version: "3.9"
-
 services:
   mongo:
-    image: mongo:6.0
-    container_name: mongo
+    image: mongo:8.0 
+    container_name: mongodb
     restart: always
     ports:
-      - "27017:27017"
+      - "27017:27017" # Expose MongoDB on the default port
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: root # Set the admin username
+      MONGO_INITDB_ROOT_PASSWORD: password # Set the admin password
     volumes:
-      - mongo_data:/data/db
-
-  mongo-express:
-    image: mongo-express:1.0.0-20
-    container_name: mongo-express
-    restart: always
-    ports:
-      - "8081:8081"
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_SERVER: mongo
+      - mongo-data:/data/db # Persist MongoDB data
+      - mongo-config:/data/configdb # Persist MongoDB configuration
 
 volumes:
-  mongo_data:
+  mongo-data:
+    driver: local
+  mongo-config:
+    driver: local
 ```
 
 ### Explanation:
 
-* **mongo service**
-
-  * Runs MongoDB 6.0
-  * Root username: `root`, password: `example` (change these in real use)
-  * Data persists via `mongo_data` volume
-
-* **mongo-express service**
-
-  * Lightweight web UI for MongoDB
-  * Accessible at [http://localhost:8081](http://localhost:8081)
-  * Uses the same credentials as the MongoDB root
-
-* **volumes**
+mongodb://root:password@localhost:27017
 
 
 
